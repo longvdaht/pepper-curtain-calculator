@@ -1,0 +1,124 @@
+$legend-class: question-legend;
+$fieldset-class: question-fieldset;
+$checkboxes-wrapper-class: checkboxes-wrapper;
+$radios-wrapper-class: radios-wrapper;
+$radio-wrapper-class: radio-wrapper;
+$radio-image-class: radio-image;
+$number-field-wrapper-class: number-field-wrapper;
+$number-field-image-wrapper-class: number-field-image-wrapper;
+$number-field-input-class: number-field-input;
+$segmented-slider-wrapper-class: segmented-slider-wrapper;
+
+.#{$fieldset-class} {
+	border: 0;
+	margin: 0;
+	padding: 2rem 0;
+
+	@media (min-width: 64em) {
+		align-items: stretch;
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: center;
+	}
+
+	.#{$legend-class} {
+		display: none;
+		font-size: 2em;
+	}
+
+	.#{$number-field-wrapper-class} {
+		.number-field-layout {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+			text-align: left;
+			column-gap: 1%;
+
+			.number-field-label {
+				font-weight: 400;
+				font-size: 14px;
+				line-height: 1.1;
+
+				@media (min-width: 64em) {
+					font-size: 16px;
+				}
+			}
+		}
+
+		.#{$number-field-image-wrapper-class} {
+			img {
+				height: auto;
+				max-width: 420px;
+				width: 100%;
+			}
+		}
+
+		.#{$number-field-input-class} {
+			font-family: var(--font-body-family);
+			font-size: 16px;
+			padding: 10px;
+			border: 0;
+			background-color: $color-light-grey;
+			border-radius: 0;
+			margin: 0;
+
+			&:focus-visible {
+				outline-color: $color-active;
+			}
+		}
+	}
+
+	.#{$radios-wrapper-class} {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: center;
+		column-gap: 1%;
+
+		.#{$radio-wrapper-class} {
+			display: flex;
+			margin-bottom: 1rem;
+			max-width: 48%;
+
+			@media (min-width: 64em) {
+				flex: 0 0 31.33333%;
+			}
+
+
+			.#{$radio-image-class} {
+				margin: 0 auto;
+				width: 95%;
+			}
+
+			input {
+				height: 0;
+				width: 0;
+				margin: 0;
+				visibility: hidden;
+			}
+
+			.option-title {
+				font-family: var(--font-heading-family);
+				font-size: 1.8rem;
+				font-weight: var(--font-body-weight);
+			}
+
+			label {
+				display: block;
+				padding: 0 5px 5px 5px;
+
+				@media (min-width: 64em) {
+					padding: 0 15px 15px 15px;
+				}
+
+				&>* {
+					pointer-events: none;
+				}
+			}
+
+			input:checked+label {
+				outline: $color-active 8px solid;
+			}
+		}
+	}
+}

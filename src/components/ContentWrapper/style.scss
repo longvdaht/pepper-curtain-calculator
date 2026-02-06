@@ -1,0 +1,8 @@
+$wrapper-class: content-wrapper;
+
+.#{$wrapper-class} {
+	background-color: $color-white;
+	@media (min-width: 64em) {
+		padding: 20px 15px 50px;
+	}
+}

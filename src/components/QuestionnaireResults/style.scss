@@ -1,0 +1,44 @@
+$result-options-wrapper-class: result-options-wrapper;
+$result-option-heading-class: result-option-heading;
+$result-option-image-class: result-option-image;
+$result-option-details-wrapper-class: result-option-details-wrapper;
+
+.#{$result-options-wrapper-class} {
+	display: flex;
+	flex-direction: row;
+	column-gap: 1%;
+	flex-wrap: wrap;
+	justify-content: center;
+	> div {
+		width: 48%;
+		@media (min-width: 64em) {
+			width: auto;
+		}
+	}
+
+	.#{$result-option-heading-class} {
+		font-size: 14px;
+		margin: 0;
+		@media (min-width: 64em) {
+			font-size: 16px;
+		}
+	}
+
+	.#{$result-option-image-class} {
+		height: auto;
+		max-width: 320px;
+		width: 100%;
+		@media (min-width: 64em) {
+			max-width: 300px;
+		}
+	}
+	
+	.#{$result-option-details-wrapper-class} {
+		font-size: 14px;
+		margin-top: 15px;
+		@media (min-width: 64em) {
+			font-size: 16px;
+		}
+	}
+}
+

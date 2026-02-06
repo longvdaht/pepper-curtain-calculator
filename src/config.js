@@ -1,0 +1,14 @@
+export default {
+  LOCALSTORAGE_KEY: "curtain-calculator",
+  PERSIST_ANSWERS: true,
+  QUESTIONNAIRE_COMPLETED_EVENT_ID: "quiz-completed",
+  QUESTIONNAIRE_ELEMENT_ID: "curtain-calculator",
+  QUESTIONNAIRE_RESULTS_ELEMENT_ID: "quiz-results",
+  SHOW_BACK_BUTTON: true,
+  SHOW_PROGRESS_BAR: true,
+  SHOW_PROGRESS_NUMBER: false,
+  PAGE_SEARCHPARAMS_KEY: "page",
+  PAGE_STEP_ELEMENT: "p",
+  PAGE_HEADING_ELEMENT: "h1",
+  RESET_SCROLL_ON_PAGE_CHANGE: true,
+};

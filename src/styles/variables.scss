@@ -1,0 +1,59 @@
+$color-active: #585D2D;
+$color-hover: #949E75;
+$color-image-frame: #585D2D;
+$color-brand: #c1c8cc;
+$color-white: #ffffff;
+$color-light-grey: #f3f1ef;
+$color-dark-grey: #3b3d3c;
+$color-back-button: #585D2D;
+$color-next-button: $color-active;
+$color-next-button-hover: $color-hover;
+
+
+@font-face {
+  font-family: 'gt-super';
+  src: url(//pepper-home.com/cdn/shop/t/14/assets/gt-super-display-light.woff2?v=178763354481978482081632867974) format('woff2'),
+    url(//pepper-home.com/cdn/shop/t/14/assets/gt-super-display-light.woff?v=114213571181958886441632867973) format('woff'),
+    url(//pepper-home.com/cdn/shop/t/14/assets/gt-super-display-light.ttf?v=163273018104623829301632867972) format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'gt-super';
+  src: url(//pepper-home.com/cdn/shop/t/14/assets/gt-super-display-light-italic.woff2?v=95299427139923688401632867972) format('woff2'),
+    url(//pepper-home.com/cdn/shop/t/14/assets/gt-super-display-light-italic.woff?v=145747471406411341711632867971) format('woff'),
+    url(//pepper-home.com/cdn/shop/t/14/assets/gt-super-display-light-italic.ttf?v=2600141553069839861632867970) format('truetype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'gt-super';
+  src: url(//pepper-home.com/cdn/shop/t/14/assets/gt-super-display-regular.woff2?v=136788074283860425551632867976) format('woff2'),
+    url(//pepper-home.com/cdn/shop/t/14/assets/gt-super-display-regular.woff?v=91071094021148136201632867976) format('woff'),
+    url(//pepper-home.com/cdn/shop/t/14/assets/gt-super-display-regular.ttf?v=108245957937915479441632867975) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-heading-family: 'sweet-sans-pro', sans-serif;
+  --font-heading-weight: 700;
+
+  --font-body-family: 'gt-super', sans-serif;
+  --font-body-style: normal;
+  --font-body-light: 400;
+  --font-body-weight: 600;
+  --font-button-weight: 800;
+  --color-base-text: 0, 0, 0;
+  --color-base-background-primary: 255, 255, 255;
+  --color-base-background-secondary: 246, 242, 236;
+  --color-foreground: var(--color-base-text);
+  --color-background: var(--color-base-background-primary);
+  --color-base-button-background: 88, 93, 45;
+  --color-base-button-background-hover: 164, 159, 115;
+  --color-base-button-background-secondary: 164, 159, 115;
+  --color-base-button-background-secondary-hover: 132, 128, 89;
+}

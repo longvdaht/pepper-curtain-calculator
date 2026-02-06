@@ -1,0 +1,9 @@
+$app-wrapper-class: app-wrapper;
+
+.#{$app-wrapper-class}{
+   min-height: 100vh;
+}
+
+.product-modal__content .#{$app-wrapper-class}{
+   min-height: auto;
+}

@@ -1,0 +1,15 @@
+$form-classname: question-form;
+$footer-text-classname: footer-text;
+
+.#{$form-classname} {
+	text-align: center;
+
+	.#{$footer-text-classname} {
+		font-size: 12px;
+		margin-top: 30px;
+		@media (min-width: 64em) {
+		  font-size: 16px;
+		  margin-top: 15px;
+		}
+	}
+}
