@@ -5,10 +5,14 @@ import config from '../../config'
 // import './style.scss'
 import { getAllMostRecentAnswers } from '../../utilities/answers'
 
-import RomanShadeFlat from "../../assets/roman-shade-flat.png";
-import RomanShadeKnifePleat from "../../assets/roman-shade-knife-pleat.png";
-import RomanShadeRelaxed from "../../assets/roman-shade-relaxed.png";
-import RomanShadeScalloped from "../../assets/roman-shade-scalloped.png";
+import RomanShadeFlatInside from "../../assets/roman-shade-flat-inside.png";
+import RomanShadeFlatOutside from "../../assets/roman-shade-flat-outside.png";
+import RomanShadeKnifePleatInside from "../../assets/roman-shade-knife-pleat-inside.png";
+import RomanShadeKnifePleatOutside from "../../assets/roman-shade-knife-pleat-outside.png";
+import RomanShadeRelaxedInside from "../../assets/roman-shade-relaxed-inside.png";
+import RomanShadeRelaxedOutside from "../../assets/roman-shade-relaxed-outside.png";
+import RomanShadeScallopedInside from "../../assets/roman-shade-scalloped-inside.png";
+import RomanShadeScallopedOutside from "../../assets/roman-shade-scalloped-outside.png";
 
 const { PAGE_HEADING_ELEMENT, SHOW_BACK_BUTTON } = config
 
@@ -40,12 +44,24 @@ const ROMAN_MOUNT_TYPE = {
     OUTSIDE_MOUNT: 'outside-mount',
 }
 
-const getImageSrc = (style) => ({
-    [ROMAN_STYLE.FLAT]: RomanShadeFlat,
-    [ROMAN_STYLE.KNIFE_PLEAT]: RomanShadeKnifePleat,
-    [ROMAN_STYLE.RELAXED]: RomanShadeRelaxed,
-    [ROMAN_STYLE.SCALLOPED]: RomanShadeScalloped,
-}[style])
+const getImageSrc = (style, type) => ({
+    [ROMAN_STYLE.FLAT]: {
+      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeFlatInside,
+      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeFlatOutside
+    },
+    [ROMAN_STYLE.KNIFE_PLEAT]: {
+      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeKnifePleatInside,
+      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeKnifePleatOutside
+    },
+    [ROMAN_STYLE.RELAXED]: {
+      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeRelaxedInside,
+      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeRelaxedOutside
+    },
+    [ROMAN_STYLE.SCALLOPED]: {
+      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeScallopedInside,
+      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeScallopedOutside
+    },
+}[style][type])
 
 const getImageTitle = (id, type) => ({
     [ROMAN_STYLE.FLAT]: {
