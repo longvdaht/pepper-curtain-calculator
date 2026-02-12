@@ -48,7 +48,7 @@ export default [
         options: [
           {
             id: "rod-pocket",
-            title: "Full Length Drapery",
+            title: "Curtains",
             image: {
               src: FullLengthImage,
               alt: "Full Length Curtain",

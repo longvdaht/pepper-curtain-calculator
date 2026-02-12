@@ -271,14 +271,14 @@ const Component = props => {
 						className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME} modal__close-button`}
 						type="button" aria-label="Close" 
 					>
-						Shop Curtain Now
+						Shop
 					</button>
 				: 
 					<a
 						className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME}`}
 						href="/collections/custom-cafe-curtains"
 					>
-						Shop Curtains
+						Shop
 					</a>
 				}
 				<button
