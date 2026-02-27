@@ -34,6 +34,7 @@ import RomanShadeLengthOutside from "../assets/roman-shade-length-outside.png";
 import RomanShadeHeadrail from "../assets/roman-shade-headrail.png";
 import { isNil } from "ramda";
 import QuestionnaireRomanResults from "../components/QuestionnaireRomanResults";
+import QuestionnaireValanceCorniceResults from "../components/QuestionnaireValanceCorniceResults";
 
 export default [
   {
@@ -73,12 +74,22 @@ export default [
             },
             description: "",
           },
+          {
+            id: "valance-cornice",
+            title: "Valance / Cornice",
+            image: {
+              src: RomanShadeImage,
+              alt: "Valance / Cornice",
+            },
+            description: "",
+          },
         ],
       },
     ],
     nextPageId: ({ answers }) =>
       answers.treatment === "cafe-length" ? "cafe-style" 
       : answers.treatment === "roman-shade" ? "roman-style"
+      : answers.treatment === "valance-cornice" ? "valance-cornice-width"
       : "style",
   },
   {
@@ -273,6 +284,43 @@ export default [
     previousPageId: "treatment",
   },
   {
+    id: "valance-cornice-width",
+    stepText: "Step 2",
+    title: "Measure Your Width",
+    questions: [
+      {
+        id: "valance-cornice-width",
+        image: {
+          src: RomanShadeWidthInside,
+          alt: "Measure Your Width",
+        },
+        validation: (value) => !isNil(value),
+        questionType: "two-select",
+        options: {
+          primary: {
+            label: "INCHES",
+            min: 24,
+            max: 106,
+            step: 1,
+            placeholder: "Inches"
+          },
+          secondary: {
+            label: "FRACTION",
+            options: [
+              { label: '0' },
+              { label: '1/2' },
+            ],
+            placeholder: "Fraction"
+          }
+        },
+      },
+    ],
+    helperText:
+      "Measure the total width of your window, including the molding. If installing over an existing shade or curtain, measure the widest area. Always round up to the nearest ½”.",
+    nextPageId: "valance-cornice-height",
+    previousPageId: "treatment",
+  },
+  {
     id: "cafe-clips",
     stepText: "Step 3",
     title: "Are You Using Clips?",
@@ -378,6 +426,43 @@ export default [
         ? "roman-shade-width-inside"
         : "roman-shade-width-outside",
     previousPageId: "roman-style",
+  },
+  {
+    id: "valance-cornice-height",
+    stepText: "Step 3",
+    title: "Measure Your Height",
+    questions: [
+      {
+        id: "valance-cornice-height",
+        image: {
+          src: RomanShadeWidthInside,
+          alt: "Measure Your Height",
+        },
+        validation: (value) => !isNil(value),
+        questionType: "two-select",
+        options: {
+          primary: {
+            label: "INCHES",
+            min: 24,
+            max: 106,
+            step: 1,
+            placeholder: "Inches"
+          },
+          secondary: {
+            label: "FRACTION",
+            options: [
+              { label: '0' },
+              { label: '1/2' },
+            ],
+            placeholder: "Fraction"
+          }
+        },
+      },
+    ],
+    helperText:
+      "Measure the height of your window, including the molding. Round up to the nearest 1/2”",
+    nextPageId: "valance-cornice-clearance",
+    previousPageId: "valance-cornice-width",
   },
   {
     id: "window-width",
@@ -612,6 +697,43 @@ export default [
     previousPageId: "roman-mount-type",
   },
   {
+    id: "valance-cornice-clearance",
+    stepText: "Step 4",
+    title: "Measure Your Clearance",
+    questions: [
+      {
+        id: "valance-cornice-clearance",
+        image: {
+          src: RomanShadeWidthInside,
+          alt: "Measure Your Clearance",
+        },
+        validation: (value) => !isNil(value),
+        questionType: "two-select",
+        options: {
+          primary: {
+            label: "INCHES",
+            min: 24,
+            max: 106,
+            step: 1,
+            placeholder: "Inches"
+          },
+          secondary: {
+            label: "FRACTION",
+            options: [
+              { label: '0' },
+              { label: '1/2' },
+            ],
+            placeholder: "Fraction"
+          }
+        },
+      },
+    ],
+    helperText:
+      "Measure the height of your top molding. If layering over a shade or curtain, measure from the top of that treatment to the bottom of the molding. Round up to the nearest ½”.",
+    nextPageId: "valance-cornice-depth",
+    previousPageId: "valance-cornice-height",
+  },
+  {
     id: "rod-top-to-floor",
     stepText: "Step 5",
     title: "Determine Your Rod Height",
@@ -782,6 +904,43 @@ export default [
     previousPageId: "roman-shade-width-outside",
   },
   {
+    id: "valance-cornice-depth",
+    stepText: "Step 5",
+    title: "Measure Your Depth",
+    questions: [
+      {
+        id: "valance-cornice-depth",
+        image: {
+          src: RomanShadeWidthInside,
+          alt: "Measure Your Depth",
+        },
+        validation: (value) => !isNil(value),
+        questionType: "two-select",
+        options: {
+          primary: {
+            label: "INCHES",
+            min: 24,
+            max: 106,
+            step: 1,
+            placeholder: "Inches"
+          },
+          secondary: {
+            label: "FRACTION",
+            options: [
+              { label: '0' },
+              { label: '1/2' },
+            ],
+            placeholder: "Fraction"
+          }
+        },
+      },
+    ],
+    helperText:
+      "Measure from the wall out to the front edge of your window molding or any existing treatment, using whichever projects the farthest. Round up to the nearest 1/2”",
+    nextPageId: "valance-cornice-results",
+    previousPageId: "valance-cornice-clearance",
+  },
+  {
     id: "roman-shade-headrail-depth",
     stepText: "Step 6",
     title: "Measure Your Depth",
@@ -841,5 +1000,9 @@ export default [
   {
     id: "roman-results",
     pageComponent: QuestionnaireRomanResults,
+  },
+  {
+    id: "valance-cornice-results",
+    pageComponent: QuestionnaireValanceCorniceResults,
   },
 ];
