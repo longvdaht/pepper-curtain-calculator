@@ -32,55 +32,55 @@ const RESULT_OPTION_HEADING_CLASSNAME = 'result-option-heading'
 const RESULT_OPTION_IMAGE_CLASSNAME = 'result-option-image'
 const RESULT_OPTION_DETAILS_WRAPPER_CLASSNAME = 'result-option-details-wrapper'
 
-const ROMAN_STYLE = {
-    FLAT: 'roman-flat',
-    KNIFE_PLEAT: 'roman-knife-pleat',
-    RELAXED: 'roman-relaxed',
-    SCALLOPED: "roman-scalloped"
-}
+// const ROMAN_STYLE = {
+//     FLAT: 'roman-flat',
+//     KNIFE_PLEAT: 'roman-knife-pleat',
+//     RELAXED: 'roman-relaxed',
+//     SCALLOPED: "roman-scalloped"
+// }
 
-const ROMAN_MOUNT_TYPE = {
-    INSIDE_MOUNT: 'inside-mount',
-    OUTSIDE_MOUNT: 'outside-mount',
-}
+// const ROMAN_MOUNT_TYPE = {
+//     INSIDE_MOUNT: 'inside-mount',
+//     OUTSIDE_MOUNT: 'outside-mount',
+// }
 
-const getImageSrc = (style, type) => ({
-    [ROMAN_STYLE.FLAT]: {
-      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeFlatInside,
-      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeFlatOutside
-    },
-    [ROMAN_STYLE.KNIFE_PLEAT]: {
-      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeKnifePleatInside,
-      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeKnifePleatOutside
-    },
-    [ROMAN_STYLE.RELAXED]: {
-      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeRelaxedInside,
-      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeRelaxedOutside
-    },
-    [ROMAN_STYLE.SCALLOPED]: {
-      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeScallopedInside,
-      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeScallopedOutside
-    },
-}[style][type])
+// const getImageSrc = (style, type) => ({
+//     [ROMAN_STYLE.FLAT]: {
+//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeFlatInside,
+//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeFlatOutside
+//     },
+//     [ROMAN_STYLE.KNIFE_PLEAT]: {
+//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeKnifePleatInside,
+//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeKnifePleatOutside
+//     },
+//     [ROMAN_STYLE.RELAXED]: {
+//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeRelaxedInside,
+//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeRelaxedOutside
+//     },
+//     [ROMAN_STYLE.SCALLOPED]: {
+//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeScallopedInside,
+//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeScallopedOutside
+//     },
+// }[style][type])
 
-const getImageTitle = (id, type) => ({
-    [ROMAN_STYLE.FLAT]: {
-      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Flat, Inside Mount',
-      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Flat, Outside Mount'
-    },
-    [ROMAN_STYLE.KNIFE_PLEAT]: {
-      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Knife Pleat, Inside Mount',
-      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Knife Pleat, Outside Mount'
-    },
-    [ROMAN_STYLE.RELAXED]: {
-      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Relaxed, Inside Mount',
-      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Relaxed, Outside Mount'
-    },
-    [ROMAN_STYLE.SCALLOPED]: {
-      [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Scalloped, Inside Mount',
-      [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Scalloped, Outside Mount'
-    },
-}[id][type])
+// const getImageTitle = (id, type) => ({
+//     [ROMAN_STYLE.FLAT]: {
+//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Flat, Inside Mount',
+//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Flat, Outside Mount'
+//     },
+//     [ROMAN_STYLE.KNIFE_PLEAT]: {
+//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Knife Pleat, Inside Mount',
+//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Knife Pleat, Outside Mount'
+//     },
+//     [ROMAN_STYLE.RELAXED]: {
+//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Relaxed, Inside Mount',
+//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Relaxed, Outside Mount'
+//     },
+//     [ROMAN_STYLE.SCALLOPED]: {
+//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Scalloped, Inside Mount',
+//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Scalloped, Outside Mount'
+//     },
+// }[id][type])
 
 const DEFAULT_PROPS = {
     onGoToNextPage: () => { }
@@ -92,45 +92,63 @@ const Component = props => {
     } = props
 
     const {
-        "roman-style": style,
-        "roman-mount-type": romanMountType,
-        "roman-shade-width": romanShadeWidth,
-        "roman-shade-length": romanShadeLength,
-        "roman-shade-depth": RomanShadeHeadrail
+        "valance-cornice-width": valanceCorniceWidth,
+        "valance-cornice-width": valanceCorniceLength,
+        "valance-cornice-depth": valanceCorniceDepth,
+        "valance-cornice-clearance": valanceCorniceClearance
     } = getAllMostRecentAnswers()
 
-    const splitWidthInchesFraction = romanShadeWidth.trim().split(' ')
-    const romanShadeWidthInches = Number(splitWidthInchesFraction[0])
+    const splitWidthValue = valanceCorniceWidth.trim().split(' ')
+    const valanceCorniceWidthInches = Number(splitWidthValue[0]) + 3;
+    const valanceCorniceWidthFraction = splitWidthValue[1] || null;
+    const width = valanceCorniceWidthInches + ' ' + valanceCorniceWidthFraction;
 
-    const splitLengthInchesFraction = romanShadeLength.trim().split(' ')
-    const romanShadeLengthInches = Number(splitLengthInchesFraction[0])
-    const romanShadeLengthFraction = splitLengthInchesFraction[1] || null
-    const styleTitle = getImageTitle(style, romanMountType)
+    const LENGTH_OPTIONS = [10, 14, 18];
 
-    const lengthInches = style === ROMAN_STYLE.SCALLOPED && romanMountType === ROMAN_MOUNT_TYPE.INSIDE_MOUNT ? 
-          (Math.floor(romanShadeLengthInches + 1) ) : romanShadeLengthInches
+    function ceilOption(value) {
+      return LENGTH_OPTIONS.find(opt => opt >= value) ?? LENGTH_OPTIONS[LENGTH_OPTIONS.length - 1];
+    }
 
-    const length = romanShadeLengthFraction && romanShadeLengthFraction != 0 ? (
-            lengthInches + ' ' + romanShadeLengthFraction
-    ) : lengthInches
+    function calculateLenght(step3, step4) {
+      const H1 = step3 / 6;
+      const H2 = step4 + 4;
 
-    const romanShadeDepthInches = parseFloat(RomanShadeHeadrail) || 0
-    const headrail = romanShadeDepthInches >= 1.5 || romanShadeWidthInches >= 60 || lengthInches >= 60 ? 2.5 : 1.5
+      return Math.max(
+          ceilOption(H1),
+          ceilOption(H2)
+      );
+    }
+    function fractionToDecimal(value) {
+      const splitValue = value.trim().split(' ');
+      const inches = Number(splitValue[0]);
+      const fraction = splitValue[1] || null;
+
+      return parseFloat(inches) + parseFloat(fraction);
+    }
+
+    const length = calculateLenght(fractionToDecimal(valanceCorniceLength), fractionToDecimal(valanceCorniceClearance));
+
+    function calculateDepth(step5) {
+      const value = step5 + 1.5;
+      return value <= 3.5 ? 3.5 : 5.5;
+    }
+
+    const depth = calculateDepth(fractionToDecimal(valanceCorniceDepth));
 
     const options = [
-        {
-            key: 0,
-            className: '',
-            title: styleTitle,
-            image: {
-                src: getImageSrc(style, romanMountType),
-                alt: styleTitle,
-            },
-            panelCount: 1,
-            width: romanShadeWidth,
-            length,
-            headrail
-        }
+      {
+        key: 0,
+        className: '',
+        title: "Valance/Cornice",
+        image: {
+            src: RomanShadeFlatInside,
+            alt: "Valance/Cornice",
+        },
+        panelCount: 1,
+        width,
+        length,
+        depth
+      }
     ]
 
     const handleResetButton = onReset;
@@ -178,13 +196,13 @@ const Component = props => {
                                         <td></td>
                                     </tr>
                                 )}
-                                {option.headrail && (
+                                {option.depth && (
                                     <tr>
                                         <td>
                                             Depth:
                                         </td>
                                         <td className="result-block">
-                                        {option.headrail}”
+                                        {option.depth}”
                                         </td>
                                         <td></td>
                                     </tr>
