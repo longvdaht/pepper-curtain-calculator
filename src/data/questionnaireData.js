@@ -300,7 +300,7 @@ export default [
           primary: {
             label: "INCHES",
             min: 24,
-            max: 106,
+            max: 108,
             step: 1,
             placeholder: "Inches"
           },
@@ -444,7 +444,7 @@ export default [
           primary: {
             label: "INCHES",
             min: 24,
-            max: 106,
+            max: 108,
             step: 1,
             placeholder: "Inches"
           },
@@ -713,7 +713,7 @@ export default [
           primary: {
             label: "INCHES",
             min: 24,
-            max: 106,
+            max: 108,
             step: 1,
             placeholder: "Inches"
           },
@@ -917,20 +917,17 @@ export default [
         validation: (value) => !isNil(value),
         questionType: "two-select",
         options: {
-          primary: {
-            label: "INCHES",
-            min: 24,
-            max: 106,
-            step: 1,
-            placeholder: "Inches"
-          },
           secondary: {
-            label: "FRACTION",
+            label: "INCHES",
             options: [
-              { label: '0' },
-              { label: '1/2' },
+              { label: '0"', value: 0 },
+              { label: '1/2"', value: 0.5 },
+              { label: '1"', value: 1 },
+              { label: '1 1/2"', value: 1.5 },
+              { label: '2"', value: 2 },
+              { label: '2 1/2"', value: 2.5 },
             ],
-            placeholder: "Fraction"
+            placeholder: "Inches"
           }
         },
       },

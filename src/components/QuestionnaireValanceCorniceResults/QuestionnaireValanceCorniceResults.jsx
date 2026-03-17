@@ -93,7 +93,7 @@ const Component = props => {
 
     const {
         "valance-cornice-width": valanceCorniceWidth,
-        "valance-cornice-width": valanceCorniceLength,
+        "valance-cornice-width": valanceCorniceHeight,
         "valance-cornice-depth": valanceCorniceDepth,
         "valance-cornice-clearance": valanceCorniceClearance
     } = getAllMostRecentAnswers()
@@ -101,12 +101,15 @@ const Component = props => {
     const splitWidthValue = valanceCorniceWidth.trim().split(' ')
     const valanceCorniceWidthInches = Number(splitWidthValue[0]) + 3;
     const valanceCorniceWidthFraction = splitWidthValue[1] || null;
-    const width = valanceCorniceWidthInches + ' ' + valanceCorniceWidthFraction;
+    let width = valanceCorniceWidthInches
+    if (valanceCorniceWidthFraction) {
+        width = valanceCorniceWidthInches + ' ' + valanceCorniceWidthFraction;
+    }
 
-    const LENGTH_OPTIONS = [10, 14, 18];
+    const HEIGHT_OPTIONS = [10, 14, 18];
 
     function ceilOption(value) {
-      return LENGTH_OPTIONS.find(opt => opt >= value) ?? LENGTH_OPTIONS[LENGTH_OPTIONS.length - 1];
+      return HEIGHT_OPTIONS.find(opt => opt >= value) ?? HEIGHT_OPTIONS[HEIGHT_OPTIONS.length - 1];
     }
 
     function calculateLenght(step3, step4) {
@@ -120,13 +123,13 @@ const Component = props => {
     }
     function fractionToDecimal(value) {
       const splitValue = value.trim().split(' ');
-      const inches = Number(splitValue[0]);
-      const fraction = splitValue[1] || null;
+      const inches = parseFloat(splitValue[0]) || 0;
+      const fraction = splitValue[1] || 0;
 
       return parseFloat(inches) + parseFloat(fraction);
     }
 
-    const length = calculateLenght(fractionToDecimal(valanceCorniceLength), fractionToDecimal(valanceCorniceClearance));
+    const height = calculateLenght(fractionToDecimal(valanceCorniceHeight), fractionToDecimal(valanceCorniceClearance));
 
     function calculateDepth(step5) {
       const value = step5 + 1.5;
@@ -146,7 +149,7 @@ const Component = props => {
         },
         panelCount: 1,
         width,
-        length,
+        height,
         depth
       }
     ]
@@ -185,13 +188,13 @@ const Component = props => {
                                         <td></td>
                                     </tr>
                                 )}
-                                {option.length && (
+                                {option.height && (
                                     <tr>
                                         <td>
-                                            Length:
+                                            Height:
                                         </td>
                                         <td className="result-block">
-                                        {option.length}”
+                                        {option.height}”
                                         </td>
                                         <td></td>
                                     </tr>

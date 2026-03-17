@@ -118,7 +118,7 @@ const Component = ({ customerEmail }) => {
 		history.pushState({}, document.title, currentUrl)
 	}, [currentPageId])
 
-	const progressPercent = currentPageIndex === 24 ? 100 : (currentPageIndex / questionnaireData.length) * 100
+	const progressPercent = currentPageIndex === 30 ? 100 : (currentPageIndex / questionnaireData.length) * 100
 	const progressPercentFormatted = `${progressPercent}%`
 	const showBackButton = !isFirstPage
 	const showNextButton = !isLastPage
