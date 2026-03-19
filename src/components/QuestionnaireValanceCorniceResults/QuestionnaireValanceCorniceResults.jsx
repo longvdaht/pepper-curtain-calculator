@@ -5,14 +5,7 @@ import config from '../../config'
 // import './style.scss'
 import { getAllMostRecentAnswers } from '../../utilities/answers'
 
-import RomanShadeFlatInside from "../../assets/roman-shade-flat-inside.png";
-import RomanShadeFlatOutside from "../../assets/roman-shade-flat-outside.png";
-import RomanShadeKnifePleatInside from "../../assets/roman-shade-knife-pleat-inside.png";
-import RomanShadeKnifePleatOutside from "../../assets/roman-shade-knife-pleat-outside.png";
-import RomanShadeRelaxedInside from "../../assets/roman-shade-relaxed-inside.png";
-import RomanShadeRelaxedOutside from "../../assets/roman-shade-relaxed-outside.png";
-import RomanShadeScallopedInside from "../../assets/roman-shade-scalloped-inside.png";
-import RomanShadeScallopedOutside from "../../assets/roman-shade-scalloped-outside.png";
+import ValanceCorniceImage from "../../assets/valance-cornice-result.png";
 
 const { PAGE_HEADING_ELEMENT, SHOW_BACK_BUTTON } = config
 
@@ -31,56 +24,6 @@ const RESULT_OPTIONS_WRAPPER_CLASSNAME = 'result-options-wrapper roman-result-wr
 const RESULT_OPTION_HEADING_CLASSNAME = 'result-option-heading'
 const RESULT_OPTION_IMAGE_CLASSNAME = 'result-option-image'
 const RESULT_OPTION_DETAILS_WRAPPER_CLASSNAME = 'result-option-details-wrapper'
-
-// const ROMAN_STYLE = {
-//     FLAT: 'roman-flat',
-//     KNIFE_PLEAT: 'roman-knife-pleat',
-//     RELAXED: 'roman-relaxed',
-//     SCALLOPED: "roman-scalloped"
-// }
-
-// const ROMAN_MOUNT_TYPE = {
-//     INSIDE_MOUNT: 'inside-mount',
-//     OUTSIDE_MOUNT: 'outside-mount',
-// }
-
-// const getImageSrc = (style, type) => ({
-//     [ROMAN_STYLE.FLAT]: {
-//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeFlatInside,
-//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeFlatOutside
-//     },
-//     [ROMAN_STYLE.KNIFE_PLEAT]: {
-//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeKnifePleatInside,
-//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeKnifePleatOutside
-//     },
-//     [ROMAN_STYLE.RELAXED]: {
-//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeRelaxedInside,
-//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeRelaxedOutside
-//     },
-//     [ROMAN_STYLE.SCALLOPED]: {
-//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: RomanShadeScallopedInside,
-//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: RomanShadeScallopedOutside
-//     },
-// }[style][type])
-
-// const getImageTitle = (id, type) => ({
-//     [ROMAN_STYLE.FLAT]: {
-//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Flat, Inside Mount',
-//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Flat, Outside Mount'
-//     },
-//     [ROMAN_STYLE.KNIFE_PLEAT]: {
-//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Knife Pleat, Inside Mount',
-//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Knife Pleat, Outside Mount'
-//     },
-//     [ROMAN_STYLE.RELAXED]: {
-//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Relaxed, Inside Mount',
-//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Relaxed, Outside Mount'
-//     },
-//     [ROMAN_STYLE.SCALLOPED]: {
-//       [ROMAN_MOUNT_TYPE.INSIDE_MOUNT]: 'Scalloped, Inside Mount',
-//       [ROMAN_MOUNT_TYPE.OUTSIDE_MOUNT]: 'Scalloped, Outside Mount'
-//     },
-// }[id][type])
 
 const DEFAULT_PROPS = {
     onGoToNextPage: () => { }
@@ -144,7 +87,7 @@ const Component = props => {
         className: '',
         title: "Valance/Cornice",
         image: {
-            src: RomanShadeFlatInside,
+            src: ValanceCorniceImage,
             alt: "Valance/Cornice",
         },
         panelCount: 1,
@@ -229,7 +172,7 @@ const Component = props => {
                 : 
                     <a
                         className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME}`}
-                        href="/collections/custom-roman-shades"
+                        href="/collections/custom-top-treatments"
                     >
                         Shop
                     </a>

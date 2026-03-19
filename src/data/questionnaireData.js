@@ -32,6 +32,11 @@ import RomanShadeWidthOutside from "../assets/roman-shade-width-outside.png";
 import RomanShadeLengthInside from "../assets/roman-shade-length-inside.png";
 import RomanShadeLengthOutside from "../assets/roman-shade-length-outside.png";
 import RomanShadeHeadrail from "../assets/roman-shade-headrail.png";
+import ValanceCorniceImage from "../assets/valance-cornice-image.png";
+import ValanceCorniceWidth from "../assets/valance-cornice-width.png";
+import ValanceCorniceHeight from "../assets/valance-cornice-height.png";
+import ValanceCorniceClearance from "../assets/valance-cornice-clearance.png";
+import ValanceCorniceDepth from "../assets/valance-cornice-depth.png";
 import { isNil } from "ramda";
 import QuestionnaireRomanResults from "../components/QuestionnaireRomanResults";
 import QuestionnaireValanceCorniceResults from "../components/QuestionnaireValanceCorniceResults";
@@ -78,7 +83,7 @@ export default [
             id: "valance-cornice",
             title: "Valance / Cornice",
             image: {
-              src: RomanShadeImage,
+              src: ValanceCorniceImage,
               alt: "Valance / Cornice",
             },
             description: "",
@@ -291,7 +296,7 @@ export default [
       {
         id: "valance-cornice-width",
         image: {
-          src: RomanShadeWidthInside,
+          src: ValanceCorniceWidth,
           alt: "Measure Your Width",
         },
         validation: (value) => !isNil(value),
@@ -299,8 +304,8 @@ export default [
         options: {
           primary: {
             label: "INCHES",
-            min: 24,
-            max: 108,
+            min: 20,
+            max: 103,
             step: 1,
             placeholder: "Inches"
           },
@@ -316,7 +321,7 @@ export default [
       },
     ],
     helperText:
-      "Measure the total width of your window, including the molding. If installing over an existing shade or curtain, measure the widest area. Always round up to the nearest ½”.",
+      "Measure the total width of your window, including the molding. If installing over an existing shade or curtain, measure the widest area. Round up to the nearest 1/2”.",
     nextPageId: "valance-cornice-height",
     previousPageId: "treatment",
   },
@@ -435,7 +440,7 @@ export default [
       {
         id: "valance-cornice-height",
         image: {
-          src: RomanShadeWidthInside,
+          src: ValanceCorniceHeight,
           alt: "Measure Your Height",
         },
         validation: (value) => !isNil(value),
@@ -443,8 +448,8 @@ export default [
         options: {
           primary: {
             label: "INCHES",
-            min: 24,
-            max: 108,
+            min: 20,
+            max: 103,
             step: 1,
             placeholder: "Inches"
           },
@@ -460,7 +465,7 @@ export default [
       },
     ],
     helperText:
-      "Measure the height of your window, including the molding. Round up to the nearest 1/2”",
+      "Measure the height of your window, including the molding. Round up to the nearest 1/2”.",
     nextPageId: "valance-cornice-clearance",
     previousPageId: "valance-cornice-width",
   },
@@ -704,7 +709,7 @@ export default [
       {
         id: "valance-cornice-clearance",
         image: {
-          src: RomanShadeWidthInside,
+          src: ValanceCorniceClearance,
           alt: "Measure Your Clearance",
         },
         validation: (value) => !isNil(value),
@@ -712,8 +717,8 @@ export default [
         options: {
           primary: {
             label: "INCHES",
-            min: 24,
-            max: 108,
+            min: 1,
+            max: 14,
             step: 1,
             placeholder: "Inches"
           },
@@ -729,7 +734,7 @@ export default [
       },
     ],
     helperText:
-      "Measure the height of your top molding. If layering over a shade or curtain, measure from the top of that treatment to the bottom of the molding. Round up to the nearest ½”.",
+      "Measure the height of your top molding. If layering over a shade or curtain, measure from the top of that treatment to the bottom of the top molding. Round up to the nearest ½”.",
     nextPageId: "valance-cornice-depth",
     previousPageId: "valance-cornice-height",
   },
@@ -911,7 +916,7 @@ export default [
       {
         id: "valance-cornice-depth",
         image: {
-          src: RomanShadeWidthInside,
+          src: ValanceCorniceDepth,
           alt: "Measure Your Depth",
         },
         validation: (value) => !isNil(value),
@@ -926,6 +931,9 @@ export default [
               { label: '1 1/2"', value: 1.5 },
               { label: '2"', value: 2 },
               { label: '2 1/2"', value: 2.5 },
+              { label: '3"', value: 3 },
+              { label: '3 1/2"', value: 3.5 },
+              { label: '4"', value: 4 },
             ],
             placeholder: "Inches"
           }
