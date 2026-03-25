@@ -172,7 +172,7 @@ const Component = props => {
                 : 
                     <a
                         className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME}`}
-                        href="/collections/custom-top-treatments"
+                        href="/collections/valances-cornices"
                     >
                         Shop
                     </a>

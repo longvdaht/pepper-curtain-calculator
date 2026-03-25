@@ -941,7 +941,7 @@ export default [
       },
     ],
     helperText:
-      "Measure from the wall out to the front edge of your window molding or any existing treatment, using whichever projects the farthest. Round up to the nearest 1/2”",
+      "Measure from the wall out to the front edge of your window molding or any existing treatment, using whichever projects the farthest. Round up to the nearest 1/2”.",
     nextPageId: "valance-cornice-results",
     previousPageId: "valance-cornice-clearance",
   },
