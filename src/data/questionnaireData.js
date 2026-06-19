@@ -72,7 +72,7 @@ export default [
           },
           {
             id: "roman-shade",
-            title: "Roman Shade",
+            title: "Roman / Wooden Shade",
             image: {
               src: RomanShadeImage,
               alt: "Roman Shade",
