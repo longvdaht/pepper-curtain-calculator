@@ -520,7 +520,8 @@ export default [
         ? "rod-placement-no-clips-ring-top"
         : answers["cafe-clips"] === "clips-yes"
         ? "rod-placement-clips"
-        : "rod-placement-no-clips",
+        : answers["cafe-style"] === "pinch-pleat" ||
+          answers["cafe-style"] === "tailored-pleat" ? "rod-placement-no-clips-bottom" : "rod-placement-no-clips",
     previousPageId: "cafe-style",
   },
   {
@@ -542,6 +543,8 @@ export default [
     nextPageId: ({ answers }) =>
       answers["cafe-clips"] === "clips-yes"
         ? "rod-placement-clips"
+        : answers["cafe-style"] === "pinch-pleat" ||
+          answers["cafe-style"] === "tailored-pleat"? "rod-placement-no-clips-bottom"
         : "rod-placement-no-clips",
     previousPageId: "cafe-clips",
   },
@@ -560,7 +563,7 @@ export default [
         questionType: "number-field",
         max: 200,
         step: 0.01,
-        measurementText: "(Top of the rod to sill)",
+        measurementText: "(Top of rod to sill)",
       },
     ],
     helperText:
@@ -583,7 +586,7 @@ export default [
         questionType: "number-field",
         max: 200,
         step: 0.01,
-        measurementText: "(Between rods)",
+        measurementText: "(Between the rods)",
       },
     ],
     helperText:
@@ -600,13 +603,13 @@ export default [
         id: "cafe-rod-no-clip-placement",
         validation: (value) => !isNil(value),
         image: {
-          src: MeasureTopToSillImage,
+          src: MeasureBottomToSillImage,
           alt: "Rod Placement",
         },
         questionType: "number-field",
         max: 200,
         step: 0.01,
-        measurementText: "(Top of the rod to sill)",
+        measurementText: "(Bottom of rod to sill)",
       },
     ],
     helperText:
@@ -747,7 +750,7 @@ export default [
         id: "rod-top-to-floor",
         validation: (value) => !isNil(value),
         image: {
-          src: MeasureTopToSillImage,
+          src: RodPocketMeasureImage,
           alt: "Rod Top Measurement",
         },
         questionType: "number-field",
@@ -769,13 +772,13 @@ export default [
         id: "cafe-rod-clip-placement",
         validation: (value) => !isNil(value),
         image: {
-          src: MeasureTopToSillImage,
+          src: MeasureBottomToSillImage,
           alt: "Rod Placement",
         },
         questionType: "number-field",
         max: 200,
         step: 0.01,
-        measurementText: "(Top of the rod to sill)",
+        measurementText: "(Bottom of the rod to sill)",
       },
     ],
     helperText:
@@ -792,13 +795,13 @@ export default [
         id: "rod-bottom-to-floor",
         validation: (value) => !isNil(value),
         image: {
-          src: MeasureTopToSillImage,
-          alt: "Rod Top Measurement",
+          src: RingTopMeasureImage,
+          alt: "Rod Bottom Measurement",
         },
         questionType: "number-field",
         max: 225,
         step: 0.01,
-        measurementText: "(Top of rod to floor)",
+        measurementText: "(Bottom of rod to floor)",
       },
     ],
     helperText: "Not sure? We suggest hanging your rod 6-8” above the window.",
@@ -821,6 +824,29 @@ export default [
         max: 200,
         step: 0.01,
         measurementText: "(Top of the rod to sill)",
+      },
+    ],
+    helperText:
+      "Not sure? Cafe curtains are designed to hang from the middle of the window. Be sure the rod is in the middle of the window pane so it does not align with the grill.",
+    nextPageId: "cafe-results",
+    previousPageId: "cafe-rod-width",
+  },
+  {
+    id: "rod-placement-no-clips-bottom",
+    stepText: "Step 5",
+    title: "Determine Your Rod Placement",
+    questions: [
+      {
+        id: "cafe-rod-no-clip-placement",
+        validation: (value) => !isNil(value),
+        image: {
+          src: MeasureBottomToSillImage,
+          alt: "Rod Placement",
+        },
+        questionType: "number-field",
+        max: 200,
+        step: 0.01,
+        measurementText: "(Bottom of the rod to sill)",
       },
     ],
     helperText:
