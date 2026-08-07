@@ -421,7 +421,7 @@ export default [
               alt: "Outside Mount",
             },
             description: "Best for privacy and light control; ideal for covering or enlarging a window",
-            description2: "Requires 2” of flat mounting space above the window",
+            description2: "Requires 4” of flat mounting space above the window",
           },
         ],
       },
@@ -929,7 +929,7 @@ export default [
       },
     ],
     helperText:
-      "Measure the height of the window at 3 points, including the molding—left, center, right; use the longest measurement to the nearest 1/4”. Add 2” to the bottom for additional light control",
+      "Measure the height of the window at 3 points, including the molding; use the longest measurement to the nearest 1/4”. Add 4.5-6” for the top clearance. Add 2” to the bottom for additional light control",
     measurementText: "(When mounting directly to the molding, measure from the top of the molding’s flat surface to the bottom of the sill)",
     nextPageId: "roman-shade-headrail-depth",
     previousPageId: "roman-shade-width-outside",
