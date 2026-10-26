@@ -870,7 +870,7 @@ export default [
         options: {
           primary: {
             label: "INCHES",
-            min: 24,
+            min: 18,
             max: 108,
             step: 1,
             placeholder: "Inches"
@@ -909,7 +909,7 @@ export default [
         options: {
           primary: {
             label: "INCHES",
-            min: 24,
+            min: 18,
             max: 108,
             step: 1,
             placeholder: "Inches"

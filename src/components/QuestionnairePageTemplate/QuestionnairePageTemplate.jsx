@@ -72,6 +72,18 @@ const Component = props => {
 
 	return (
 		<div className={`${PAGE_WRAPPER_CLASSNAME} page-${stepText ? handleize(stepText) : ''} step-${title ? handleize(title) : ''} step-${id}`} >
+			{SHOW_BACK_BUTTON && showBackButton && (
+				<button
+					className={`${BUTTON_CLASSNAME} ${BACK_BUTTON_CLASSNAME}`}
+					type="button"
+					onClick={handleBackButtonClick}
+				>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M15.2988 18.5986L8.70044 12.0005L15.2988 5.4021" stroke="#242524"/>
+					</svg>
+					Back
+				</button>
+			)}
 			<form
 				className={FORM_CLASSNAME}
 				onSubmit={handleSubmit}
@@ -117,15 +129,6 @@ const Component = props => {
 							type="submit"
 						>
 							Continue
-						</button>
-					)}
-					{SHOW_BACK_BUTTON && showBackButton && (
-						<button
-							className={`${BUTTON_CLASSNAME} ${BACK_BUTTON_CLASSNAME}`}
-							type="button"
-							onClick={handleBackButtonClick}
-						>
-							Back
 						</button>
 					)}
 				</div>
