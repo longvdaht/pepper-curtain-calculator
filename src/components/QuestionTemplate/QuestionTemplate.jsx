@@ -30,6 +30,7 @@ const QUESTION_TYPE = {
 	NUMBER_FIELD: 'number-field',
 	SEGMENT_SLIDER: 'segmented-slider',
 	TWO_SELECT: 'two-select',
+  MULTI_TWO_SELECT: 'multi-two-select',
 }
 
 const ERROR_MESSAGE = 'Please select an option'
@@ -169,9 +170,10 @@ const Component = props => {
 
     // "33 1/2" → ["33", "1/2"]
     const parts = raw.toString().split(' ')
+    const first = parts[0]
 
     return {
-      inches: Number(parts[0]) || '',
+      inches: first.includes('/') ? first : Number(first) || '',
       fraction: parts[1] || '',
     }
   }
@@ -242,30 +244,32 @@ const Component = props => {
                   (_, i) => primary.min + i
                 ).map((n) => (
                   <option key={n} value={n}>
-                  {n}
+                  {n} {primary.unit ? n == 1 ? primary.unit : primary.unit + 'es' : ''}
                   </option>
                 ))}
                 </select>
               </div>
             )}
 
-            <div class="select-wrapper">
-              <select
-              id={`${questionId}-fraction`}
-              value={primary ? fraction : inches}
-              onChange={primary ? handleSecondaryChange : handlePrimaryChange}
-              className={TWO_SELECT_FIELDS_INPUT_CLASSNAME}
-              >
-              <option value="" disabled>
-                {secondary.placeholder}
-              </option>
-              {secondary.options.map((opt) => (
-                <option key={opt.label} value={opt.value ? opt.value : opt.label}>
-                  {opt.label}
+            {secondary && (
+              <div class="select-wrapper">
+                <select
+                  id={`${questionId}-fraction`}
+                  value={primary ? fraction : inches}
+                  onChange={primary ? handleSecondaryChange : handlePrimaryChange}
+                  className={TWO_SELECT_FIELDS_INPUT_CLASSNAME}
+                >
+                <option value="" disabled>
+                  {secondary.placeholder}
                 </option>
-              ))}
-              </select>
-            </div>
+                {secondary.options.map((opt) => (
+                  <option key={opt.label} value={opt.value ? opt.value : opt.label}>
+                  {opt.label} {secondary.unit ? opt.label == '1' || opt.value == 1 ? secondary.unit : secondary.unit + 'es' : ''}
+                  </option>
+                ))}
+                </select>
+              </div>
+            )}
           </div>
 
           <div className="number-field-helper">
@@ -276,12 +280,138 @@ const Component = props => {
     )
   }
 
+  const formatTwoSelect = ({ inches, fraction }) => {
+    if (!inches) return ''
+    return fraction && fraction != 0 ? `${inches} ${fraction}` : `${inches}`
+  }
+
+  const parseMultiValue = (raw, fields = []) =>
+    Object.fromEntries(
+      fields.map((f) => [f.key, parseDisplayValue(raw?.[f.key])])
+    )
+
+  const [multiTwoSelectValue, setMultiTwoSelectValue] = useState(() =>
+    parseMultiValue(valueProp, options.fields)
+  )
+
+  useEffect(() => {
+    setMultiTwoSelectValue(parseMultiValue(valueProp, options.fields))
+  }, [valueProp])
+
+  const renderMultiTwoSelectFields = () => {
+    const { primary, secondary, fields = [] } = options
+
+    const handleChange = (key, part) => (e) => {
+      const next = {
+        ...multiTwoSelectValue,
+        [key]: { ...multiTwoSelectValue[key], [part]: e.target.value },
+      }
+      setMultiTwoSelectValue(next)
+
+      const result = {}
+      const allFilled = fields.every((f) => {
+        const v = formatTwoSelect(next[f.key])
+        result[f.key] = v
+        return Boolean(v)
+      })
+
+      if (allFilled) onValueChange(result)
+    }
+
+    return (
+      <div className={TWO_SELECT_FIELDS_WRAPPER_CLASSNAME}>
+        {image && (
+          <div className={NUMBER_FIELD_IMAGE_WRAPPER_CLASSNAME}>
+            <img src={image.src} alt={image.alt} />
+          </div>
+        )}
+
+        <div className="select-field-layout">
+          {fields.map((field) => {
+            const { inches, fraction } = multiTwoSelectValue[field.key] || {}
+
+            return (
+              <div className="select-row" key={field.key}>
+                {primary && (
+                  <div className="select-wrapper">
+                    <select
+                      id={`${questionId}-${field.key}-inches`}
+                      value={inches}
+                      onChange={handleChange(field.key, 'inches')}
+                      className={TWO_SELECT_FIELDS_INPUT_CLASSNAME}
+                    >
+                      <option value="" disabled>
+                        {field.label}
+                      </option>
+                      {Array.from(
+                        { length: primary.max - primary.min + 1 },
+                        (_, i) => primary.min + i
+                      ).map((n) => (
+                        <option key={n} value={n}>
+                          {n}{' '}
+                          {primary.unit
+                            ? n == 1
+                              ? primary.unit
+                              : primary.unit + 'es'
+                            : ''}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+                {secondary && (
+                  <div className="select-wrapper">
+                    <select
+                      id={`${questionId}-${field.key}-fraction`}
+                      value={primary ? fraction : inches}
+                      onChange={handleChange(
+                        field.key,
+                        primary ? 'fraction' : 'inches'
+                      )}
+                      className={TWO_SELECT_FIELDS_INPUT_CLASSNAME}
+                    >
+                      <option value="" disabled>
+                        {secondary.placeholder}
+                      </option>
+                      {secondary.options.map((opt) => (
+                        <option
+                          key={opt.label}
+                          value={opt.value ? opt.value : opt.label}
+                        >
+                          {opt.label}{' '}
+                          {secondary.unit
+                            ? opt.label == '1' || opt.value == 1
+                              ? secondary.unit
+                              : secondary.unit + 'es'
+                            : ''}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+                {options.unit && (
+                  <div className="select-wrapper-unit">
+                    {options.unit}
+                  </div>
+                )}
+              </div>
+            )
+          })}
+
+          <div className="number-field-helper">{measurementText}</div>
+        </div>
+      </div>
+    )
+  }
+
 	const renderFormElement = {
 		[QUESTION_TYPE.MULTI_CHOICE]: renderMultiChoice,
 		[QUESTION_TYPE.MULTI_SELECT]: renderMultiSelect,
 		[QUESTION_TYPE.NUMBER_FIELD]: renderNumberField,
 		[QUESTION_TYPE.SEGMENT_SLIDER]: renderSegmentSlider,
-    	[QUESTION_TYPE.TWO_SELECT]: renderTwoSelectFields,
+    [QUESTION_TYPE.TWO_SELECT]: renderTwoSelectFields,
+    [QUESTION_TYPE.MULTI_TWO_SELECT]: renderMultiTwoSelectFields,
 	}[questionType]
 
 	const renderErrorMessage = questionType => {

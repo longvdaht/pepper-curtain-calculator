@@ -420,12 +420,13 @@ export default [
               src: RomanShadeOutsideMount,
               alt: "Outside Mount",
             },
-            description: "Best for privacy and light control; ideal for covering or enlarging a window",
-            description2: "Requires 4.5” of flat mounting space above the window",
+            description: "Best for privacy and light control; ideal for covering or enlarging window",
+            description2: "Requires 2” of flat mounting space above the window molding",
           },
         ],
       },
     ],
+    helperText: "Note: Calculations will differ between styles.",
     nextPageId: ({ answers }) =>
       answers["roman-mount-type"] === "inside-mount"
         ? "roman-shade-width-inside"
@@ -481,8 +482,20 @@ export default [
           alt: "Ring Top Curtain",
         },
         validation: (value) => !isNil(value),
-        questionType: "number-field",
-        step: 0.01,
+        questionType: "two-select",
+        options: {
+          secondary: {
+            label: "INCHES",
+            options: [
+              { label: '25' },
+              { label: '50' },
+              { label: '75' },
+              { label: '100' }
+            ],
+            unit: "Inch",
+            placeholder: "Inches"
+          }
+        },
       },
     ],
     helperText:
@@ -507,8 +520,20 @@ export default [
           alt: "Rod Measurement",
         },
         validation: (value) => !isNil(value),
-        questionType: "number-field",
-        step: 0.01,
+        questionType: "two-select", 
+        options: {
+          secondary: {
+            label: "INCHES",
+            options: [
+              { label: '25' },
+              { label: '50' },
+              { label: '75' },
+              { label: '100' }
+            ],
+            unit: "Inch",
+            placeholder: "Inches"
+          }
+        },
       },
     ],
     nextPageId: ({ answers }) =>
@@ -536,8 +561,20 @@ export default [
           alt: "Rod Measurement",
         },
         validation: (value) => !isNil(value),
-        questionType: "number-field",
-        step: 0.01,
+        questionType: "two-select", 
+        options: {
+          secondary: {
+            label: "INCHES",
+            options: [
+              { label: '25' },
+              { label: '50' },
+              { label: '75' },
+              { label: '100' }
+            ],
+            unit: "Inch",
+            placeholder: "Inches"
+          }
+        },
       },
     ],
     nextPageId: ({ answers }) =>
@@ -628,35 +665,41 @@ export default [
           src: RomanShadeWidthInside,
           alt: "Roman shade width inside",
         },
-        validation: (value) => !isNil(value),
-        questionType: "two-select",
+        validation: (value) => !isNil(value) && ["top", "middle", "bottom"].every((key) => !isNil(value[key]) && value[key] !== ""),
+        questionType: "multi-two-select",
         options: {
+          fields: [
+            { key: "top", label: "Top Width" },
+            { key: "middle", label: "Middle Width" },
+            { key: "bottom", label: "Bottom Width" },
+          ],
           primary: {
             label: "INCHES",
             min: 18,
             max: 96,
             step: 1,
-            placeholder: "Inches"
+            placeholder: "Inches",
           },
           secondary: {
             label: "FRACTION",
             options: [
-              { label: '0' },
-              { label: '1/8' },
-              { label: '1/4' },
-              { label: '3/8' },
-              { label: '1/2' },
-              { label: '5/8' },
-              { label: '3/4' },
-              { label: '7/8' }
+              { label: "0" },
+              { label: "1/8" },
+              { label: "1/4" },
+              { label: "3/8" },
+              { label: "1/2" },
+              { label: "5/8" },
+              { label: "3/4" },
+              { label: "7/8" },
             ],
-            placeholder: "Fraction"
-          }
+            placeholder: "Fraction",
+          },
+          unit: 'Inches'
         },
       },
     ],
     helperText:
-      "Measure the width of your window at 3 points inside window casing—top, middle, bottom; use the narrowest measurement and round up to the nearest 1/8”.",
+      "Measure the width of your window at 3 points inside the window casing—top, middle, bottom. Round up to the nearest 1/8”.",
     nextPageId: "roman-shade-length-inside",
     previousPageId: "roman-mount-type",
   },
@@ -671,36 +714,41 @@ export default [
           src: RomanShadeWidthOutside,
           alt: "Roman shade width outside",
         },
-        validation: (value) => !isNil(value),
-        questionType: "two-select",
+        validation: (value) => !isNil(value) && ["top", "middle", "bottom"].every((key) => !isNil(value[key]) && value[key] !== ""),
+        questionType: "multi-two-select",
         options: {
+          fields: [
+            { key: "top", label: "Top Width" },
+            { key: "middle", label: "Middle Width" },
+            { key: "bottom", label: "Bottom Width" },
+          ],
           primary: {
             label: "INCHES",
             min: 18,
             max: 96,
             step: 1,
-            placeholder: "Inches"
+            placeholder: "Inches",
           },
           secondary: {
             label: "FRACTION",
             options: [
-              { label: '0' },
-              { label: '1/8' },
-              { label: '1/4' },
-              { label: '3/8' },
-              { label: '1/2' },
-              { label: '5/8' },
-              { label: '3/4' },
-              { label: '7/8' }
+              { label: "0" },
+              { label: "1/8" },
+              { label: "1/4" },
+              { label: "3/8" },
+              { label: "1/2" },
+              { label: "5/8" },
+              { label: "3/4" },
+              { label: "7/8" },
             ],
-            placeholder: "Fraction"
-          }
+            placeholder: "Fraction",
+          },
+          unit: 'Inches'
         },
       },
     ],
     helperText:
-      "Measure the width of your window at 3 points including the molding—top, middle, bottom; use the widest measurement and round up to the nearest 1/8”.  Add +2”.",
-    measurementText: "(When mounting directly to the molding, use the narrowest measurement of the molding’s flat surface; do not add 2”)",
+      "Measure the width of your window at 3 points including the molding—top, middle, bottom. Round up to the nearest 1/8”.",
     nextPageId: "roman-shade-length-outside",
     previousPageId: "roman-mount-type",
   },
@@ -865,15 +913,20 @@ export default [
           src: RomanShadeLengthInside,
           alt: "Roman shade length inside",
         },
-        validation: (value) => !isNil(value),
-        questionType: "two-select",
+        validation: (value) => !isNil(value) && ["top", "middle", "bottom"].every((key) => !isNil(value[key]) && value[key] !== ""),
+        questionType: "multi-two-select",
         options: {
+          fields: [
+            { key: "top", label: "Top Length" },
+            { key: "middle", label: "Middle Length" },
+            { key: "bottom", label: "Bottom Length" },
+          ],
           primary: {
             label: "INCHES",
             min: 18,
-            max: 108,
+            max: 96,
             step: 1,
-            placeholder: "Inches"
+            placeholder: "Inches",
           },
           secondary: {
             label: "FRACTION",
@@ -884,12 +937,13 @@ export default [
               { label: '3/4' }
             ],
             placeholder: "Fraction"
-          }
+          },
+          unit: 'Inches'
         },
       },
     ],
     helperText:
-      "Measure the height of the window at 3 points inside window casing—left, center, right; use the longest measurement to the nearest 1/4”.",
+      "Measure the height of the window at 3 points inside window casing—left, center, right. Round up to the nearest 1/4”.",
     nextPageId: "roman-results",
     previousPageId: "roman-shade-width-inside",
   },
@@ -904,15 +958,20 @@ export default [
           src: RomanShadeLengthOutside,
           alt: "Roman shade length outside",
         },
-        validation: (value) => !isNil(value),
-        questionType: "two-select",
+        validation: (value) => !isNil(value) && ["top", "middle", "bottom"].every((key) => !isNil(value[key]) && value[key] !== ""),
+        questionType: "multi-two-select",
         options: {
+          fields: [
+            { key: "top", label: "Top Length" },
+            { key: "middle", label: "Middle Length" },
+            { key: "bottom", label: "Bottom Length" },
+          ],
           primary: {
             label: "INCHES",
             min: 18,
-            max: 108,
+            max: 96,
             step: 1,
-            placeholder: "Inches"
+            placeholder: "Inches",
           },
           secondary: {
             label: "FRACTION",
@@ -923,14 +982,14 @@ export default [
               { label: '3/4' }
             ],
             placeholder: "Fraction"
-          }
+          },
+          unit: 'Inches'
         },
-         
       },
     ],
     helperText:
-      "Measure the height of the window at 3 points, including the molding; use the longest measurement to the nearest 1/4”. Add 4.5-6” for the top clearance. Add 2” to the bottom for additional light control.",
-    measurementText: "(When mounting directly to the molding, measure from the top of the molding’s flat surface to the bottom of the sill)",
+      "Measure the height of the window at 3 points including the molding—left, center, right. Round up to the nearest 1/4”.",
+    measurementText: "(When mounting directly to the molding, measure from the top of the molding’s flat surface to the bottom of the sill; add 2” for additional light control)",
     nextPageId: "roman-shade-headrail-depth",
     previousPageId: "roman-shade-width-outside",
   },

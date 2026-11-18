@@ -99,15 +99,39 @@ const Component = props => {
         "roman-shade-depth": RomanShadeHeadrail
     } = getAllMostRecentAnswers()
 
-    const splitWidthInchesFraction = romanShadeWidth.trim().split(' ')
-    const romanShadeWidthInches = Number(splitWidthInchesFraction[0])
+    const toNumber = (str) => {
+      const [whole, frac] = String(str).trim().split(' ')
+      if (!frac) return Number(whole)
+      const [n, d] = frac.split('/')
+      return Number(whole) + n / d
+    }
 
-    const splitLengthInchesFraction = romanShadeLength.trim().split(' ')
-    const romanShadeLengthInches = Number(splitLengthInchesFraction[0])
+    const pickMin = (obj) => Object.values(obj).reduce((a, b) => (toNumber(b) < toNumber(a) ? b : a))
+    const pickMax = (obj) => Object.values(obj).reduce((a, b) => (toNumber(b) > toNumber(a) ? b : a))
+    const isInside = romanMountType === ROMAN_MOUNT_TYPE.INSIDE_MOUNT
+    const isScalloped = style === ROMAN_STYLE.SCALLOPED
+
+    const widthOffset = isInside ? 0 : 2
+    const lengthOffset = isInside ? 0 : 6
+    
+    const romanShadeWidthStr = isInside ? pickMin(romanShadeWidth) : pickMax(romanShadeWidth)
+    const splitWidthInchesFraction = romanShadeWidthStr.trim().split(' ')
+    const romanShadeWidthInches = Number(splitWidthInchesFraction[0]) + widthOffset
+    const romanShadeWidthFraction = splitWidthInchesFraction[1] || null
+
+    const width = romanShadeWidthFraction && romanShadeWidthFraction != 0 ? (
+      romanShadeWidthInches + ' ' + romanShadeWidthFraction
+    ) : romanShadeWidthInches
+
+    const romanShadeLengthStr = pickMax(romanShadeLength)
+    const splitLengthInchesFraction = romanShadeLengthStr.trim().split(' ')
+    const romanShadeLengthInches = Number(splitLengthInchesFraction[0]) + lengthOffset
     const romanShadeLengthFraction = splitLengthInchesFraction[1] || null
     const styleTitle = getImageTitle(style, romanMountType)
 
-    const lengthInches = style === ROMAN_STYLE.SCALLOPED && romanMountType === ROMAN_MOUNT_TYPE.INSIDE_MOUNT ? 
+    console.log(romanShadeWidth, romanShadeLength, romanShadeWidthStr, romanShadeLengthStr)
+
+    const lengthInches = isScalloped && isInside ? 
           (Math.floor(romanShadeLengthInches + 1) ) : romanShadeLengthInches
 
     const length = romanShadeLengthFraction && romanShadeLengthFraction != 0 ? (
@@ -127,7 +151,7 @@ const Component = props => {
                 alt: styleTitle,
             },
             panelCount: 1,
-            width: romanShadeWidth,
+            width,
             length,
             headrail
         }
@@ -142,7 +166,9 @@ const Component = props => {
             <PAGE_HEADING_ELEMENT className={PAGE_HEADING_CLASSNAME}>
                 Your Perfect Roman Shade
             </PAGE_HEADING_ELEMENT>
-            
+            <div className='footer-text'>
+              Note: When ordering an inside mount, enter your exact window width. We’ll automatically subtract 1/2" to allow for proper clearance.
+            </div>
             <div className={RESULT_OPTIONS_WRAPPER_CLASSNAME}>
                 {options.map(option => (
                     <div key={option.key} className={option.className}>
