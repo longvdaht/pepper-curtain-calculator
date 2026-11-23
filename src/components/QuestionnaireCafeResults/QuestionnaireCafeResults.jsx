@@ -209,7 +209,7 @@ const Component = props => {
 	const isProductPage = window.location.pathname.startsWith('/products/');
 
 	return (
-		<div className={PAGE_WRAPPER_CLASSNAME}>
+		<div className={`${PAGE_WRAPPER_CLASSNAME} cafe-curtain-result-wrapper`}>
 			<PAGE_HEADING_ELEMENT className={PAGE_HEADING_CLASSNAME}>
 				Your Perfect Curtains
 			</PAGE_HEADING_ELEMENT>
@@ -271,14 +271,14 @@ const Component = props => {
 						className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME} modal__close-button`}
 						type="button" aria-label="Close" 
 					>
-						Shop
+						Shop Cafe Curtains
 					</button>
 				: 
 					<a
 						className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME}`}
 						href="/collections/custom-cafe-curtains"
 					>
-						Shop
+						Shop Cafe Curtains
 					</a>
 				}
 				<button

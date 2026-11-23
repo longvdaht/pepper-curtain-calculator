@@ -54,10 +54,10 @@ export default [
         options: [
           {
             id: "rod-pocket",
-            title: "Curtains",
+            title: "Full length Drapery",
             image: {
               src: FullLengthImage,
-              alt: "Full Length Curtain",
+              alt: "Full length Drapery",
             },
             description: "",
           },
@@ -694,7 +694,7 @@ export default [
             ],
             placeholder: "Fraction",
           },
-          unit: 'Inches'
+          "unit": "Inches"
         },
       },
     ],
@@ -743,7 +743,7 @@ export default [
             ],
             placeholder: "Fraction",
           },
-          unit: 'Inches'
+          "unit": "Inches"
         },
       },
     ],
@@ -938,7 +938,7 @@ export default [
             ],
             placeholder: "Fraction"
           },
-          unit: 'Inches'
+          "unit": "Inches"
         },
       },
     ],
@@ -983,7 +983,7 @@ export default [
             ],
             placeholder: "Fraction"
           },
-          unit: 'Inches'
+          "unit": "Inches"
         },
       },
     ],
@@ -1021,7 +1021,8 @@ export default [
               { label: '4"', value: 4 },
             ],
             placeholder: "Inches"
-          }
+          },
+          unit: "Inches"
         },
       },
     ],
@@ -1069,7 +1070,8 @@ export default [
               { label: '2 3/8"', value: 2.375 },
             ],
             placeholder: "Inches"
-          }
+          },
+          unit: "Inches"
         },
          
       },

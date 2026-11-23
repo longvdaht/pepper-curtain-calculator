@@ -23,6 +23,7 @@ const NUMBER_FIELD_IMAGE_WRAPPER_CLASSNAME = 'number-field-image-wrapper'
 const NUMBER_FIELD_INPUT_CLASSNAME = 'number-field-input'
 const TWO_SELECT_FIELDS_WRAPPER_CLASSNAME = 'select-field-image-wrapper'
 const TWO_SELECT_FIELDS_INPUT_CLASSNAME = 'select-field-input select__select'
+const MULTI_TWO_SELECT_FIELDS_WRAPPER_CLASSNAME = 'select-field-image-wrapper multi-select-field'
 
 const QUESTION_TYPE = {
 	MULTI_CHOICE: 'multi-choice',
@@ -218,7 +219,7 @@ const Component = props => {
     }
 
     return (
-      <div className={TWO_SELECT_FIELDS_WRAPPER_CLASSNAME}>
+      <div className={`${TWO_SELECT_FIELDS_WRAPPER_CLASSNAME} two-select-wrapper${options.unit ? ' has-unit': ''}${primary ? ' has-primary': ''}${secondary ? ' has-secondary': ''}`}>
         {image && (
           <div className={NUMBER_FIELD_IMAGE_WRAPPER_CLASSNAME}>
             <img src={image.src} alt={image.alt} />
@@ -235,10 +236,11 @@ const Component = props => {
                   onChange={handlePrimaryChange}
                   className={TWO_SELECT_FIELDS_INPUT_CLASSNAME}
                 >
-                <option value="" disabled>
-                  {primary.placeholder}
-                </option>
-
+                {primary.placeholder && (
+                  <option value="" disabled>
+                    {primary.placeholder}
+                  </option>
+                )}
                 {Array.from(
                   { length: primary.max - primary.min + 1 },
                   (_, i) => primary.min + i
@@ -259,15 +261,22 @@ const Component = props => {
                   onChange={primary ? handleSecondaryChange : handlePrimaryChange}
                   className={TWO_SELECT_FIELDS_INPUT_CLASSNAME}
                 >
-                <option value="" disabled>
-                  {secondary.placeholder}
-                </option>
+                {secondary.placeholder && (
+                  <option value="" disabled>
+                    {secondary.placeholder}
+                  </option>
+                )}
                 {secondary.options.map((opt) => (
                   <option key={opt.label} value={opt.value ? opt.value : opt.label}>
                   {opt.label} {secondary.unit ? opt.label == '1' || opt.value == 1 ? secondary.unit : secondary.unit + 'es' : ''}
                   </option>
                 ))}
                 </select>
+              </div>
+            )}
+            {options.unit && (
+              <div className="select-wrapper-unit">
+                {options.unit}
               </div>
             )}
           </div>
@@ -290,13 +299,16 @@ const Component = props => {
       fields.map((f) => [f.key, parseDisplayValue(raw?.[f.key])])
     )
 
+  const isMultiTwoSelect = questionType === QUESTION_TYPE.MULTI_TWO_SELECT
+
   const [multiTwoSelectValue, setMultiTwoSelectValue] = useState(() =>
-    parseMultiValue(valueProp, options.fields)
+    isMultiTwoSelect ? parseMultiValue(valueProp, options?.fields) : {}
   )
 
   useEffect(() => {
-    setMultiTwoSelectValue(parseMultiValue(valueProp, options.fields))
-  }, [valueProp])
+    if (!isMultiTwoSelect) return
+    setMultiTwoSelectValue(parseMultiValue(valueProp, options?.fields))
+  }, [valueProp, isMultiTwoSelect])
 
   const renderMultiTwoSelectFields = () => {
     const { primary, secondary, fields = [] } = options
@@ -319,14 +331,14 @@ const Component = props => {
     }
 
     return (
-      <div className={TWO_SELECT_FIELDS_WRAPPER_CLASSNAME}>
+      <div className={`${MULTI_TWO_SELECT_FIELDS_WRAPPER_CLASSNAME}${options.unit ? ' has-unit': ''}${primary ? ' has-primary': ''}${secondary ? ' has-secondary': ''}`}>
         {image && (
           <div className={NUMBER_FIELD_IMAGE_WRAPPER_CLASSNAME}>
             <img src={image.src} alt={image.alt} />
           </div>
         )}
 
-        <div className="select-field-layout">
+        <div className="select-field-layout multi-select-field-layout">
           {fields.map((field) => {
             const { inches, fraction } = multiTwoSelectValue[field.key] || {}
 

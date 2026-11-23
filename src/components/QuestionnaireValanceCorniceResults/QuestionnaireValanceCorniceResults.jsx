@@ -20,7 +20,7 @@ const {
 } = consts
 
 const DISPLAY_NAME = 'QuestionnaireValanceCorniceResults'
-const RESULT_OPTIONS_WRAPPER_CLASSNAME = 'result-options-wrapper roman-result-wrapper'
+const RESULT_OPTIONS_WRAPPER_CLASSNAME = 'result-options-wrapper roman-result-wrapper valance-cornice-result-wrapper'
 const RESULT_OPTION_HEADING_CLASSNAME = 'result-option-heading'
 const RESULT_OPTION_IMAGE_CLASSNAME = 'result-option-image'
 const RESULT_OPTION_DETAILS_WRAPPER_CLASSNAME = 'result-option-details-wrapper'
@@ -102,7 +102,7 @@ const Component = props => {
     const isProductPage = window.location.pathname.startsWith('/products/');
 
     return (
-        <div className={PAGE_WRAPPER_CLASSNAME}>
+        <div className={`${PAGE_WRAPPER_CLASSNAME} valance-cornice-result-wrapper`}>
             <PAGE_HEADING_ELEMENT className={PAGE_HEADING_CLASSNAME}>
                 Your Perfect Top Treatment
             </PAGE_HEADING_ELEMENT>
@@ -110,6 +110,9 @@ const Component = props => {
             <div className={RESULT_OPTIONS_WRAPPER_CLASSNAME}>
                 {options.map(option => (
                     <div key={option.key} className={option.className}>
+                        <h3 class={RESULT_OPTION_HEADING_CLASSNAME}>
+                            Valance / Cornice
+                        </h3>
                         <img
                             className={RESULT_OPTION_IMAGE_CLASSNAME}
                             src={option.image.src}
@@ -117,9 +120,6 @@ const Component = props => {
                         />
                         <div className={RESULT_OPTION_DETAILS_WRAPPER_CLASSNAME}>
                             <table>
-                                <tr>
-                                    <th colSpan={3}>Valance / Cornice</th>
-                                </tr>
                                 {option.width && (
                                     <tr>
                                         <td>
@@ -164,17 +164,17 @@ const Component = props => {
             <div className={ACTIONS_WRAPPER_CLASSNAME}>
                 {isProductPage ?
                     <button
-                        className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME} modal__close-button`}
+                        className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME} modal__close-button button-result-valance-cornice`}
                         type="button" aria-label="Close" 
                     >
-                        Shop
+                        Shop Valances / Cornices
                     </button>
                 : 
                     <a
-                        className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME}`}
+                        className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME} button-result-valance-cornice`}
                         href="/collections/valances-cornices"
                     >
-                        Shop
+                        Shop Valances / Cornices
                     </a>
                 }
                 <button

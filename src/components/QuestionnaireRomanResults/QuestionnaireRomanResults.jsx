@@ -129,8 +129,6 @@ const Component = props => {
     const romanShadeLengthFraction = splitLengthInchesFraction[1] || null
     const styleTitle = getImageTitle(style, romanMountType)
 
-    console.log(romanShadeWidth, romanShadeLength, romanShadeWidthStr, romanShadeLengthStr)
-
     const lengthInches = isScalloped && isInside ? 
           (Math.floor(romanShadeLengthInches + 1) ) : romanShadeLengthInches
 
@@ -162,7 +160,7 @@ const Component = props => {
     const isProductPage = window.location.pathname.startsWith('/products/');
 
     return (
-        <div className={PAGE_WRAPPER_CLASSNAME}>
+        <div className={`${PAGE_WRAPPER_CLASSNAME} roman-result-wrapper`}>
             <PAGE_HEADING_ELEMENT className={PAGE_HEADING_CLASSNAME}>
                 Your Perfect Roman Shade
             </PAGE_HEADING_ELEMENT>
@@ -172,6 +170,9 @@ const Component = props => {
             <div className={RESULT_OPTIONS_WRAPPER_CLASSNAME}>
                 {options.map(option => (
                     <div key={option.key} className={option.className}>
+                        <h3 class={RESULT_OPTION_HEADING_CLASSNAME}>
+                            {option.title}
+                        </h3>
                         <img
                             className={RESULT_OPTION_IMAGE_CLASSNAME}
                             src={option.image.src}
@@ -179,9 +180,6 @@ const Component = props => {
                         />
                         <div className={RESULT_OPTION_DETAILS_WRAPPER_CLASSNAME}>
                             <table>
-                                <tr>
-                                    <th colSpan={3}>{option.title}</th>
-                                </tr>
                                 {option.width && (
                                     <tr>
                                         <td>
@@ -232,14 +230,14 @@ const Component = props => {
                         className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME} modal__close-button`}
                         type="button" aria-label="Close" 
                     >
-                        Shop
+                        Shop Roman Shades
                     </button>
                 : 
                     <a
                         className={`${BUTTON_CLASSNAME} ${NEXT_BUTTON_CLASSNAME}`}
                         href="/collections/custom-roman-shades"
                     >
-                        Shop
+                        Shop Roman Shades
                     </a>
                 }
                 <button
